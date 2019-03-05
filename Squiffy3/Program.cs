@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 
 namespace Squiffy3
@@ -97,10 +98,11 @@ namespace Squiffy3
                 int len4 = h4 * w4;
                 int w2 = dimOut2W;
                 int h2 = dimOut2H;
+                Stopwatch sw = new Stopwatch();
                 bool UnSlant = true;
                 if (UnSlant)
                 {
-
+                    sw.Restart();
                     ///////////////////////////////////////////////////////////////////
                     //Forward Project and Unpack
                     //
@@ -293,6 +295,7 @@ namespace Squiffy3
                     //ALEX icd 
                     //ALEX ! Frame Balance for Switching !
                     //TODO: write out answer
+                    Console.WriteLine($"sw.ElapsedMilliseconds = {sw.ElapsedMilliseconds} ;");
                     bw = new BinaryWriter(File.Create(@"slant.raw"));
                     for (int n = 0; n < imgOut.Length; n++)
                     {
